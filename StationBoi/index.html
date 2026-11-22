@@ -4,19 +4,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#071522">
-    <meta name="description" content="the COOLEST personal website">
-
-    <title>Space's Station</title>
-
+    <title>evyvaan's COOL and TUFF and AURA MAXXING website</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main id="app">
+
+    <div class="decoration-strip">
+        pizza
+    </div>
+
+    <header class="topbar">
+        <a href="index.html">HOME</a>
+        <a href="projects.html">PROJECTS</a>
+        <a href="observatory.html">OBSERVATORY</a>
+        <a href="scrapbook.html">SCRAPBOOK</a>
+        <a href="contact.html">CONTACT ME</a>
+    </header>
+
+    <main class="website-grid">
+
+      
+        <aside class="left-column">
+
+            <section class="panel navigation-panel">
+                <h2>Navigation ✦</h2>
+                <ul>
+                    <li><a href="index.html">⌁ Home</a></li>
+                    <li><a href="projects.html">⌁ My projects</a></li>
+                    <li><a href="observatory.html">⌁ Observatory</a></li>
+                    <li><a href="scrapbook.html">⌁ Scrapbook</a></li>
+                    <li><a href="contact.html">⌁ Contact me</a></li>
+                </ul>
+            </section>
+
+            <section class="panel about-panel">
+                <h2>Who's here?</h2>
+                <p>
+                    A nerd who REALLY likes space (if you couldnt tell) cutrently in 9th grade. Aspiring go be an astronautical engineering
+                </p>
+            </section>
+
+            <section class="panel status-panel">
+                <h2>Current status</h2>
+                <p id="current-status">Building this website!</p>
+                <p id="local-clock">Loading clock...</p>
+            </section>
+
+            <section class="panel links-panel">
+                <h2>Elsewhere on the web</h2>
+                <a href="https://github.com/" target="_blank">GitHub ↗</a>
+                <a href="https://hackclub.com/" target="_blank">Hack Club ↗</a>
+            </section>
+
+        </aside>
+
+
+        <section class="centre-column">
+
+            <section class="panel welcome-panel">
+                <div>
+                    <p class="eyebrow">WELCOME TO MY LITTLE CORNER OF THE INTERNET :P (this sounds cringe but imma keep this)</p>
+                    <h1>Hello, lovely people!</h1>
+                    <p>
+                        This is my personal website: a collection of
+                        projects, experiments, thoughts, discoveries
+                        and various things i find interesting.
+                    </p>
+                    <p>
+                        Feel free to explore. There is quite a lot here.
+                    </p>
+                </div>
+
+                <div class="welcome-decoration">
+                    ✦ ✧ 🚀 ✧ ✦
+                </div>
+            </section>
+
+            <section class="panel universe-panel">
+                <h2>✦ The Universe</h2>
+                <p>in the orion arm of the milky way galaxy trust</p>
+
+                <div id="space-scene">
+                    <canvas id="space-canvas"></canvas>
+                </div>
+
+                <p class="tiny-note">
+                    space stuff
+                </p>
+            </section>
+
+            <section class="panel updates-panel">
+                <h2>What's new?</h2>
+
+                <article class="update">
+                    <time>23 NOV 2026</time>
+                    <p>Working on this website. More things coming soon!</p>
+                </article>
+
+                <article class="update">
+                    <time>RECENTLY</time>
+                    <p>Experiments, engineering projects and research.</p>
+                </article>
+            </section>
+
+            <section class="panel projects-preview">
+                <h2>Things I've been making</h2>
+
+                <div class="project-list">
+                    <a href="projects.html">Planetary Body Simulation ↗</a>
+                    <a href="projects.html">Nyx — Lightsail Research ↗</a>
+                    <a href="projects.html">Robotic Arm ↗</a>
+                </div>
+            </section>
+
+        </section>
+
+        <aside class="right-column">
+
+            <section class="panel now-playing">
+                <h2>Now playing ♪</h2>
+                <div class="music-art">♫</div>
+                <p>Music player coming soon</p>
+            </section>
+
+            <section class="panel random-panel">
+                <h2>Random corner</h2>
+                <p>Interesting things belong here.</p>
+                <p>Space facts, discoveries, links, research papers i found interesting, articles, thoughts, etc..</p>
+            </section>
+
+            <section class="panel sticker-panel">
+                <h2>Sticker collection</h2>
+                <div class="sticker-area">
+                    ✦ 🚀 ✧ 🪐 ✦
+                    ☄️ ✧ 🌎 ✦
+                </div>
+            </section>
+
+            <section class="panel visitor-panel">
+                <h2>Visitor log</h2>
+                <p>You've found your way here!</p>
+                <p>Counter functionality coming later (hopefully).</p>
+            </section>
+
+        </aside>
 
     </main>
+
+    <footer>
+        <p>Thanks for visiting! you're awesone and i love you <3</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
