@@ -2,82 +2,103 @@
 
 const clock = document.getElementById("local-clock");
 
-function updateClock() {
-    const now = new Date();
-
-    clock.textContent = now.toLocaleTimeString("en-IN", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-    });
-}
-
-updateClock();
-setInterval(updateClock, 1000);
-
-const canvas = document.getElementById("space-canvas");
-const ctx = canvas.getContext("2d");
-
-let stars = [];
-let width = 0;
-let height = 0;
-
-function resizeCanvas() {
-    const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    width = rect.width;
-    height = rect.height;
-
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    createStars();
-}
-
-function createStars() {
-    stars = [];
-
-    const count = Math.floor(width * height / 1800);
-
-    for (let i = 0; i < count; i++) {
-        stars.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            radius: Math.random() * 1.5 + 0.3,
-            speed: Math.random() * 0.35 + 0.08,
-            phase: Math.random() * Math.PI * 2
+if (clock) {
+    function updateClock() {
+        clock.textContent = new Date().toLocaleTimeString("en-IN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
         });
     }
+
+    updateClock();
+    setInterval(updateClock, 1000);
 }
 
-function animateStars(time) {
-    ctx.clearRect(0, 0, width, height);
+async function loadAPOD() {
+    const container = document.getElementById("apod");
+    if (!container) return;
 
-    for (const star of stars) {
-        const flicker = 0.55 +
-            Math.sin(time * 0.002 + star.phase) * 0.35;
+    container.textContent = "Receiving transmission...";
 
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+    try {
+        const response = await fetch(
+            "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"
+        );
 
-        ctx.fillStyle = `rgba(210, 230, 255, ${flicker})`;
-        ctx.fill();
-
-        star.y += star.speed;
-
-        if (star.y > height) {
-            star.y = 0;
-            star.x = Math.random() * width;
+        if (!response.ok) {
+            throw new Error(`NASA API error: ${response.status}`);
         }
-    }
 
-    requestAnimationFrame(animateStars);
+        const data = await response.json();
+
+        const media = data.media_type === "video"
+            ? `<iframe
+                src="${data.url}"
+                width="100%"
+                height="350"
+                allowfullscreen>
+               </iframe>`
+            : `<img
+                src="${data.url}"
+                alt="${data.title}"
+                style="width:100%; border:3px ridge #fff;">`;
+
+        const title = document.createElement("h3");
+        title.textContent = data.title;
+
+        const date = document.createElement("p");
+        date.textContent = data.date;
+
+        const explanation = document.createElement("p");
+        explanation.textContent = data.explanation;
+
+        container.replaceChildren(
+            title,
+            date
+        );
+
+        const mediaWrapper = document.createElement("div");
+        mediaWrapper.innerHTML = media;
+        container.appendChild(mediaWrapper);
+        container.appendChild(explanation);
+
+    } catch (error) {
+        container.textContent = "NASA transmission failed.";
+        console.error("APOD:", error);
+    }
 }
 
-window.addEventListener("resize", resizeCanvas);
+async function loadISS() {
+    const container = document.getElementById("iss-position");
+    if (!container) return;
 
-resizeCanvas();
-requestAnimationFrame(animateStars);
+    try {
+        const response = await fetch(
+            "https://api.wheretheiss.at/v1/satellites/25544"
+        );
+
+        if (!response.ok) {
+            throw new Error(`ISS API error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        container.innerHTML = `
+            <p><strong>Latitude:</strong> ${data.latitude.toFixed(3)}°</p>
+            <p><strong>Longitude:</strong> ${data.longitude.toFixed(3)}°</p>
+            <p><strong>Altitude:</strong> ${data.altitude.toFixed(2)} km</p>
+            <p><strong>Velocity:</strong> ${data.velocity.toFixed(2)} km/h</p>
+            <p><small>Updated: ${new Date().toLocaleTimeString()}</small></p>
+        `;
+
+    } catch (error) {
+        container.textContent = "ISS tracking data unavailable.";
+        console.error("ISS:", error);
+    }
+}
+
+loadAPOD();
+loadISS();
+
+setInterval(loadISS, 10000);
