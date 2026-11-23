@@ -102,3 +102,25 @@ loadAPOD();
 loadISS();
 
 setInterval(loadISS, 10000);
+
+
+// VISITOR COUNTER
+
+const visitorCount = document.getElementById("visitor-count");
+
+if (visitorCount) {
+    const waitForGoatCounter = setInterval(() => {
+        if (!window.goatcounter?.visit_count) return;
+
+        clearInterval(waitForGoatCounter);
+
+        visitorCount.textContent = "";
+
+        window.goatcounter.visit_count({
+            append: "#visitor-count",
+            type: "png",
+            path: "TOTAL"
+        });
+    }, 100);
+}
+
