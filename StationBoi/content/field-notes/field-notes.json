@@ -1,0 +1,4 @@
+{
+  "layout": "content-page.njk",
+  "permalink": "field-notes/{{ page.fileSlug }}/index.html"
+}
