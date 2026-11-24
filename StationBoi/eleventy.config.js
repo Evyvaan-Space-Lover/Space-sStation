@@ -13,11 +13,24 @@ module.exports = function (eleventyConfig) {
     });
   });
 
-  eleventyConfig.addCollection("scrapbookEntries", (collectionApi) => {
-    return collectionApi
-      .getFilteredByGlob("content/scrapbook/*.md")
-      .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
-  });
+  const collections = [
+    ["articles", "articles"],
+    ["scrapbookEntries", "scrapbook"],
+    ["fieldNotes", "field-notes"],
+    ["projects", "projects"],
+    ["homepageUpdates", "updates"]
+  ];
+
+  for (const [name, folder] of collections) {
+    eleventyConfig.addCollection(name, (api) => {
+      return api
+        .getFilteredByGlob(`content/${folder}/*.md`)
+        .sort((a, b) =>
+          new Date(b.data.date || 0) -
+          new Date(a.data.date || 0)
+        );
+    });
+  }
 
   return {
     dir: {
