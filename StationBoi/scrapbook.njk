@@ -1,0 +1,126 @@
+
+---
+permalink: scrapbook.html
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the scrapbook :D</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="decoration-strip">
+        ✦ SCRAPBOOK ✦
+    </div>
+
+    <header class="topbar">
+        <a href="index.html">HOME</a>
+        <a href="projects.html">PROJECTS</a>
+        <a href="observatory.html">OBSERVATORY</a>
+        <a href="scrapbook.html">SCRAPBOOK</a>
+        <a href="contact.html">CONTACT ME</a>
+    </header>
+
+    <main class="website-grid">
+
+        <aside class="left-column">
+
+            <section class="panel navigation-panel">
+                <h2>Navigation ✦</h2>
+                <ul>
+                    <li><a href="index.html">⌁ Home</a></li>
+                    <li><a href="projects.html">⌁ Projects</a></li>
+                    <li><a href="observatory.html">⌁ Observatory</a></li>
+                    <li><a href="scrapbook.html">⌁ Scrapbook</a></li>
+                    <li><a href="contact.html">⌁ Contact</a></li>
+                </ul>
+            </section>
+
+            <section class="panel links-panel">
+                <h2>Categories</h2>
+                <a href="#journal">Journal</a>
+                <a href="#field-notes">Field notes</a>
+                <a href="#articles">Articles</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#misc">Miscellaneous</a>
+            </section>
+
+        </aside>
+
+        <section class="centre-column">
+
+            <section class="panel welcome-panel">
+                <div>
+                    <h1>The Scrapbook!</h1>
+                    <p>
+                        A collection of thoughts, discoveries,
+                        photographs, writing and random things.
+                    </p>
+                </div>
+                <div class="welcome-decoration"></div>
+            </section>
+
+            <section class="panel updates-panel" id="journal">
+                <h2>01 — Journal</h2>
+
+                {% for entry in collections.scrapbookEntries %}
+
+                    <article class="scrap-entry">
+                        <time>{{ entry.data.date | readableDate }}</time>
+
+                        <h3>
+                            <a href="{{ entry.url }}">
+                                {{ entry.data.title }}
+                            </a>
+                        </h3>
+
+                        {% if entry.data.category %}
+                            <p>{{ entry.data.category }}</p>
+                        {% endif %}
+
+                        {% if entry.data.images and entry.data.images.length %}
+                            <img
+                                src="{{ entry.data.images[0] }}"
+                                alt="{{ entry.data.title }}"
+                                style="max-width:100%;"
+                            >
+                        {% endif %}
+
+                        <a href="{{ entry.url }}">Read entry →</a>
+                    </article>
+
+                {% else %}
+
+                    <p>No entries yet. Something will appear here soon!</p>
+
+                {% endfor %}
+
+            </section>
+
+            <section class="panel visitor-panel" id="archive">
+                <h2>Archive</h2>
+                <p>
+                    {{ collections.scrapbookEntries.length }}
+                    scrapbook entries so far.
+                </p>
+            </section>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>blep ✦</p>
+    </footer>
+
+    <script data-goatcounter="https://spaceevee.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
