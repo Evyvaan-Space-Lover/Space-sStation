@@ -1,0 +1,84 @@
+
+---
+permalink: articles.html
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Articles — StationBoi</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="decoration-strip">✦ ARTICLES ✦</div>
+
+    <header class="topbar">
+        <a href="/">HOME</a>
+        <a href="/projects.html">PROJECTS</a>
+        <a href="/observatory.html">OBSERVATORY</a>
+        <a href="/scrapbook.html">SCRAPBOOK</a>
+        <a href="/articles.html">ARTICLES</a>
+        <a href="/contact.html">CONTACT ME</a>
+    </header>
+
+    <main class="website-grid">
+        <aside class="left-column">
+            <section class="panel navigation-panel">
+                <h2>Navigation ✦</h2>
+                <ul>
+                    <li><a href="/">⌁ Home</a></li>
+                    <li><a href="/projects.html">⌁ Projects</a></li>
+                    <li><a href="/observatory.html">⌁ Observatory</a></li>
+                    <li><a href="/scrapbook.html">⌁ Scrapbook</a></li>
+                    <li><a href="/articles.html">⌁ Articles</a></li>
+                    <li><a href="/contact.html">⌁ Contact</a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <section class="centre-column">
+            <section class="panel welcome-panel">
+                <div>
+                    <h1>Articles & Writing</h1>
+                    <p>Longer thoughts, research, explanations and things worth documenting.</p>
+                </div>
+                <div class="welcome-decoration">✍️</div>
+            </section>
+
+            <section class="panel updates-panel">
+                <h2>Published articles</h2>
+
+                {% for article in collections.articles %}
+                    <article class="update">
+                        <div>
+                            <time>{{ article.data.date | readableDate }}</time>
+                        </div>
+                        <div>
+                            <h3>
+                                <a href="{{ article.url }}">
+                                    {{ article.data.title }}
+                                </a>
+                            </h3>
+                            {% if article.data.description %}
+                                <p>{{ article.data.description }}</p>
+                            {% endif %}
+                            <a href="{{ article.url }}">Read article →</a>
+                        </div>
+                    </article>
+                {% else %}
+                    <p>No articles published yet. Check back soon!</p>
+                {% endfor %}
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>✦ Written and published from the station ✦</p>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
