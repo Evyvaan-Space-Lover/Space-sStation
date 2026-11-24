@@ -1,0 +1,68 @@
+
+backend:
+  name: github
+  repo: Evyvaan-Space-Lover/Space-sStation
+  branch: main
+
+media_folder: "StationBoi/assets/uploads"
+public_folder: "/assets/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: articles
+    label: Articles
+    folder: StationBoi/content/articles
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Description, name: description, widget: text }
+      - { label: Cover Image, name: image, widget: image, required: false }
+      - { label: Article, name: body, widget: markdown }
+
+  - name: scrapbook
+    label: Scrapbook
+    folder: StationBoi/content/scrapbook
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Category, name: category, widget: string }
+      - { label: Images, name: images, widget: list, field: { label: Image, name: image, widget: image } }
+      - { label: Entry, name: body, widget: markdown }
+
+  - name: field-notes
+    label: Field Notes
+    folder: StationBoi/content/field-notes
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Notes, name: body, widget: markdown }
+
+  - name: projects
+    label: Projects
+    folder: StationBoi/content/projects
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Project Name, name: title, widget: string }
+      - { label: Status, name: status, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Technologies, name: technologies, widget: list }
+      - { label: GitHub URL, name: github, widget: string, required: false }
+      - { label: Project Page Content, name: body, widget: markdown }
+
+  - name: updates
+    label: Homepage Updates
+    folder: StationBoi/content/updates
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Update, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Content, name: body, widget: text }
