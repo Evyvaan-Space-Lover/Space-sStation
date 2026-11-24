@@ -1,0 +1,4 @@
+{
+  "layout": "content-page.njk",
+  "permalink": "scrapbook/{{ page.fileSlug }}/index.html"
+}
