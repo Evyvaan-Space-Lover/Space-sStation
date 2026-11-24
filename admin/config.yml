@@ -1,8 +1,10 @@
-
 backend:
   name: github
   repo: Evyvaan-Space-Lover/Space-sStation
   branch: main
+  base_url: https://spacestation-6xp.pages.dev
+  auth_endpoint: api/auth
+
 
 media_folder: "StationBoi/assets/uploads"
 public_folder: "/assets/uploads"
