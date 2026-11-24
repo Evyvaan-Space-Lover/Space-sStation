@@ -1,0 +1,83 @@
+
+---
+permalink: field-notes/index.html
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Field Notes — StationBoi</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="decoration-strip">✦ FIELD NOTES ✦</div>
+
+    <header class="topbar">
+        <a href="/">HOME</a>
+        <a href="/projects.html">PROJECTS</a>
+        <a href="/observatory.html">OBSERVATORY</a>
+        <a href="/scrapbook.html">SCRAPBOOK</a>
+        <a href="/articles/">ARTICLES</a>
+        <a href="/contact.html">CONTACT ME</a>
+    </header>
+
+    <main class="website-grid">
+        <aside class="left-column">
+            <section class="panel navigation-panel">
+                <h2>Navigation ✦</h2>
+                <ul>
+                    <li><a href="/">⌁ Home</a></li>
+                    <li><a href="/projects.html">⌁ Projects</a></li>
+                    <li><a href="/observatory.html">⌁ Observatory</a></li>
+                    <li><a href="/scrapbook.html">⌁ Scrapbook</a></li>
+                    <li><a href="/articles/">⌁ Articles</a></li>
+                    <li><a href="/field-notes/">⌁ Field Notes</a></li>
+                    <li><a href="/contact.html">⌁ Contact</a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <section class="centre-column">
+            <section class="panel welcome-panel">
+                <div>
+                    <h1>Field Notes</h1>
+                    <p>
+                        Observations, experiments, discoveries
+                        and little things worth recording.
+                    </p>
+                </div>
+                <div class="welcome-decoration">🔭</div>
+            </section>
+
+            <section class="panel updates-panel">
+                <h2>Field notebook</h2>
+
+                {% for note in collections.fieldNotes %}
+                    <article class="scrap-entry">
+                        <time>{{ note.data.date | readableDate }}</time>
+
+                        <h3>
+                            <a href="{{ note.url }}">
+                                {{ note.data.title }}
+                            </a>
+                        </h3>
+
+                        <a href="{{ note.url }}">Open note →</a>
+                    </article>
+                {% else %}
+                    <p>No field notes yet. The notebook is waiting!</p>
+                {% endfor %}
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>✦ Observations from the station ✦</p>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
