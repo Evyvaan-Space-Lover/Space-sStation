@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} | StationBoi</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="website-grid">
+    <article class="panel">
+      <h1>{{ title }}</h1>
+      {% if date %}
+        <p>{{ date | readableDate }}</p>
+      {% endif %}
+      {% if description %}
+        <p>{{ description }}</p>
+      {% endif %}
+      {% if image %}
+        <img src="{{ image }}" alt="{{ title }}" style="max-width:100%">
+      {% endif %}
+      <div class="article-content">
+        {{ content | safe }}
+      </div>
+      <p><a href="/scrapbook.html">Back to the station</a></p>
+    </article>
+  </main>
+</body>
+</html>
