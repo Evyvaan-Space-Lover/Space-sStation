@@ -1,0 +1,4 @@
+{
+  "layout": "content-page.njk",
+  "permalink": "projects/{{ page.fileSlug }}/index.html"
+}
