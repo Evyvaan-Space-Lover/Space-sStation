@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Space Station</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <main class="website-grid">
+        <section class="panel">
+            <a href="/projects.html">← Back to Projects</a>
+
+            <h1>{{ title }}</h1>
+
+            {% if status %}
+                <p>{{ status }}</p>
+            {% endif %}
+
+            {% if summary %}
+                <p>{{ summary }}</p>
+            {% endif %}
+
+            {% if technologies %}
+                <p><strong>Technologies:</strong> {{ technologies | join(", ") }}</p>
+            {% endif %}
+
+            {% if github %}
+                <p><a href="{{ github }}" target="_blank">View source on GitHub ↗</a></p>
+            {% endif %}
+
+            <hr>
+
+            <article>
+                {{ content | safe }}
+            </article>
+        </section>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>
