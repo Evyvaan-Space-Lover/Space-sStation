@@ -76,21 +76,19 @@ permalink: index.html
                 <h2>What's new?</h2>
 
                 {% for update in collections.homepageUpdates %}
-                    <article class="update">
-                        {% if update.data.date %}
-                            <time datetime="{{ update.data.date | htmlDateString }}">
-                                {{ update.data.date | readableDate }}
-                            </time>
-                        {% endif %}
+    <article class="update">
+        {% if update.data.date %}
+            <time>{{ update.data.date | readableDate }}</time>
+        {% endif %}
 
-                        <h3>{{ update.data.title }}</h3>
-                        <p>{{ update.templateContent | safe }}</p>
-                    </article>
-                {% else %}
-                    <article class="update">
-                        <p>Nothing new just yet. Check back soon!</p>
-                    </article>
-                {% endfor %}
+        <h3>{{ update.data.title }}</h3>
+        <div>{{ update.templateContent | safe }}</div>
+    </article>
+{% else %}
+    <article class="update">
+        <p>Nothing new just yet. Check back soon!</p>
+    </article>
+{% endfor %}
 
             </section>
         </section>
