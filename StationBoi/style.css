@@ -570,4 +570,23 @@ body {
     background-repeat: no-repeat;
 }
 
+/* MAIN CLUTTERCORE BACKGROUND */
+
+body {
+    background-image: url("StationBoi/assets/backgrounds/Turn off your PC_20261126_031407_0000 (1).png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #171020;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+        background-size: auto 100vh;
+        background-position: center top;
+    }
+}
+
 
