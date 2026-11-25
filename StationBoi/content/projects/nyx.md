@@ -1,6 +1,6 @@
 ---
 title: "Nyx — Light-Sail Dynamics Workbench"
-status: "Active development"
+status: "workbench released. the paper is under development"
 summary: "A Python simulation workbench for investigating how different light-sail geometries respond to radiation pressure from a Gaussian laser beam."
 technologies:
   - Python
