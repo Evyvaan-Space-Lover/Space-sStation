@@ -1,0 +1,93 @@
+---
+permalink: projects.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my babies :')</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <div class="decoration-strip">
+        ✦ PROJECTs ✦
+    </div>
+
+    <header class="topbar">
+        <a href="/">nest</a>
+        <a href="/projects.html">projects</a>
+        <a href="/observatory.html">observatory</a>
+        <a href="/scrapbook.html">scrapbook</a>
+        <a href="/contact.html">contact</a>
+    </header>
+
+    <main class="website-grid">
+
+        <aside class="left-column">
+            <section class="panel status-panel">
+                <h2>Work status</h2>
+                <p>Currently building things.</p>
+            </section>
+        </aside>
+
+        <section class="centre-column">
+
+            <section class="panel welcome-panel">
+                <div>
+                    <h1>My Projects!</h1>
+                </div>
+                <div class="welcome-decoration">⚙ ✦ 🚀</div>
+            </section>
+
+            {% for project in collections.projects %}
+            <section class="panel projects-preview">
+                <h2>{{ loop.index | string | padStart(2, "0") }} — {{ project.data.title }}</h2>
+
+                <p>{{ project.data.summary }}</p>
+
+                {% if project.data.technologies %}
+                <p>tools: {{ project.data.technologies | join(", ") }}</p>
+                {% endif %}
+
+                {% if project.data.status %}
+                <p>status: {{ project.data.status }}</p>
+                {% endif %}
+
+                <a href="{{ project.url }}">Read about this project ↗</a>
+
+                {% if project.data.github %}
+                <p>
+                    <a href="{{ project.data.github }}" target="_blank" rel="noopener noreferrer">
+                        View source code ↗
+                    </a>
+                </p>
+                {% endif %}
+            </section>
+            {% else %}
+            <section class="panel projects-preview">
+                <p>No projects published yet. Check back soon!</p>
+            </section>
+            {% endfor %}
+
+            <p>more things will be documented here soon. until then, check out my github</p>
+
+        </section>
+
+        <aside class="right-column">
+        </aside>
+
+    </main>
+
+    <footer>
+        <p style="font-style: italic;">fin ✦</p>
+    </footer>
+
+    <script data-goatcounter="https://spaceevee.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    <script src="/script.js"></script>
+
+</body>
+</html>
