@@ -44,7 +44,7 @@ permalink: projects.html
 
             {% for project in collections.projects %}
             <section class="panel projects-preview">
-                <h2>{{ loop.index | string | padStart(2, "0") }} — {{ project.data.title }}</h2>
+                <h2>{{ loop.index }} — {{ project.data.title }}</h2>
 
                 <p>{{ project.data.summary }}</p>
 
