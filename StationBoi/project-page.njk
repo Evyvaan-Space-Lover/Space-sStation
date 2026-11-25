@@ -1,0 +1,82 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} — my projects</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <div class="decoration-strip">
+        ✦ projects ✦
+    </div>
+
+    <header class="topbar">
+        <a href="/">nest</a>
+        <a href="/projects.html">projects</a>
+        <a href="/observatory.html">observatory</a>
+        <a href="/scrapbook.html">scrapbook</a>
+        <a href="/contact.html">contact</a>
+    </header>
+
+    <main class="website-grid">
+
+        <aside class="left-column">
+            <section class="panel status-panel">
+                <h2>Project status</h2>
+                <p>{{ status }}</p>
+            </section>
+        </aside>
+
+        <section class="centre-column">
+
+            <section class="panel welcome-panel">
+                <div>
+                    <h1>{{ title }}</h1>
+                </div>
+                <div class="welcome-decoration">⚙ ✦ 🚀</div>
+            </section>
+
+            <section class="panel projects-preview">
+                <p>{{ summary }}</p>
+
+                {% if technologies %}
+                <p>tools: {{ technologies | join(", ") }}</p>
+                {% endif %}
+
+                {% if github %}
+                <p>
+                    <a href="{{ github }}" target="_blank" rel="noopener noreferrer">
+                        View source code ↗
+                    </a>
+                </p>
+                {% endif %}
+            </section>
+
+            <section class="panel">
+                {{ content | safe }}
+            </section>
+
+            <p><a href="/projects.html">← back to all projects</a></p>
+
+        </section>
+
+        <aside class="right-column">
+        </aside>
+
+    </main>
+
+    <footer>
+        <p style="font-style: italic;">fin ✦</p>
+    </footer>
+
+    <script src="/script.js"></script>
+
+</body>
+</html>
