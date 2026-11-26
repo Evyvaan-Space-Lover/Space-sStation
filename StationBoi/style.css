@@ -608,7 +608,6 @@ body {
     object-fit: contain;
     opacity: 0.96;
     filter: drop-shadow(3px 4px 0 #16052e);
-    animation: sticker-float 4s ease-in-out infinite;
 }
 
 @keyframes sticker-float {
