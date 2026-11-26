@@ -144,7 +144,7 @@ async function loadRandomDecorations() {
         document.body.appendChild(container);
 
         const isMobile = window.innerWidth <= 600;
-        const decorationCount = isMobile ? 3 : 6;
+        const decorationCount = isMobile ? 6 : 12;
 
         const shuffled = [...assets].sort(() => Math.random() - 0.5);
         const selected = shuffled.slice(
