@@ -589,3 +589,46 @@ body {
         background-position: center top;
     }
 }
+
+
+#random-decorations {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.random-decoration {
+    position: absolute;
+    display: block;
+    height: auto;
+    max-width: 120px;
+    max-height: 120px;
+    object-fit: contain;
+    opacity: 0.96;
+    filter: drop-shadow(3px 4px 0 #16052e);
+    animation: sticker-float 4s ease-in-out infinite;
+}
+
+@keyframes sticker-float {
+    0%, 100% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .random-decoration {
+        max-width: 75px;
+        max-height: 75px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .random-decoration {
+        animation: none;
+    }
+}
