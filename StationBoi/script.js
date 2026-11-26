@@ -162,17 +162,21 @@ async function loadRandomDecorations() {
             img.decoding = "async";
 
            const columns = isMobile ? 2 : 5;
-const rows = Math.ceil(selected.length / columns);
 
-const col = index % columns;
-const row = Math.floor(index / columns);
+           const side = index % 4;
+const spread = Math.random();
 
-const cellWidth = 100 / columns;
-const cellHeight = 100 / rows;
+const positions = [
+    { left: `${2 + spread * 16}%`, top: `${2 + Math.random() * 30}%` },
+    { right: `${2 + spread * 16}%`, top: `${2 + Math.random() * 30}%` },
+    { left: `${2 + spread * 16}%`, bottom: `${2 + Math.random() * 30}%` },
+    { right: `${2 + spread * 16}%`, bottom: `${2 + Math.random() * 30}%` }
+];
 
-img.style.left = `${col * cellWidth + Math.random() * (cellWidth - 10)}%`;
-img.style.top = `${row * cellHeight + Math.random() * (cellHeight - 10)}%`;
+Object.assign(img.style, positions[side]);
+
 img.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+          
             container.appendChild(img);
         });
 
