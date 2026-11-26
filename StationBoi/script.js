@@ -124,3 +124,64 @@ if (visitorCount) {
     }, 100);
 }
 
+// rqndom decor
+
+async function loadRandomDecorations() {
+    try {
+        const response = await fetch("/decoration-assets.json");
+
+        if (!response.ok) {
+            throw new Error("Could not load decoration assets");
+        }
+
+        const assets = await response.json();
+
+        if (!assets.length) return;
+
+        const container = document.createElement("div");
+        container.id = "random-decorations";
+        container.setAttribute("aria-hidden", "true");
+        document.body.appendChild(container);
+
+        const isMobile = window.innerWidth <= 600;
+        const decorationCount = isMobile ? 3 : 6;
+
+        const shuffled = [...assets].sort(() => Math.random() - 0.5);
+        const selected = shuffled.slice(
+            0,
+            Math.min(decorationCount, shuffled.length)
+        );
+
+        selected.forEach((src, index) => {
+            const img = document.createElement("img");
+
+            img.src = src;
+            img.alt = "";
+            img.className = "random-decoration";
+            img.loading = "lazy";
+            img.decoding = "async";
+
+            const size = isMobile
+                ? 45 + Math.random() * 35
+                : 65 + Math.random() * 65;
+
+            const sides = ["left", "right"];
+            const side = sides[index % 2];
+
+            img.style.width = `${size}px`;
+            img.style.top = `${12 + Math.random() * 75}%`;
+            img.style[side] = `${Math.random() * 3}%`;
+            img.style.transform = `rotate(${Math.random() * 36 - 18}deg)`;
+            img.style.animationDelay = `${Math.random() * 2}s`;
+
+            container.appendChild(img);
+        });
+
+    } catch (error) {
+        console.error("Random decorations:", error);
+    }
+}
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    loadRandomDecorations();
+}
