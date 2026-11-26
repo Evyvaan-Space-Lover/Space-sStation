@@ -161,19 +161,18 @@ async function loadRandomDecorations() {
             img.loading = "lazy";
             img.decoding = "async";
 
-            const size = isMobile
-                ? 45 + Math.random() * 35
-                : 65 + Math.random() * 65;
+           const columns = isMobile ? 2 : 5;
+const rows = Math.ceil(selected.length / columns);
 
-            const sides = ["left", "right"];
-            const side = sides[index % 2];
+const col = index % columns;
+const row = Math.floor(index / columns);
 
-            img.style.width = `${size}px`;
-            img.style.top = `${12 + Math.random() * 75}%`;
-            img.style[side] = `${Math.random() * 3}%`;
-            img.style.transform = `rotate(${Math.random() * 36 - 18}deg)`;
-            img.style.animationDelay = `${Math.random() * 2}s`;
+const cellWidth = 100 / columns;
+const cellHeight = 100 / rows;
 
+img.style.left = `${col * cellWidth + Math.random() * (cellWidth - 10)}%`;
+img.style.top = `${row * cellHeight + Math.random() * (cellHeight - 10)}%`;
+img.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
             container.appendChild(img);
         });
 
